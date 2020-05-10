@@ -1,15 +1,54 @@
-Conflicts
-=========
-
 A curated set of merge conflicts from various open-source git repositories for conflict resolution practice.
 
-When resolving confilcts in git, it's recommended to use diff3 (`git config --global conflictstyle.diff3`).
+When resolving conflicts in git, it's recommended to use diff3.
 See the blog post [Take the pain out of git conflict resolution: use diff3][blog].
 
 [blog]: https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
 
-<!-- Different, compatible changes made to the same/adjacent lines -->
-<!-- ------------------------------------------------------------- -->
+Steps to reproduce a conflict
+=============================
+
+1. Ensure your working directory is clean.
+
+        git reset --hard; git clean -df
+
+2. Check out first parent (`^1`) of the merge commit. This is the commit that was checked out when the merge originally happened.
+
+        git checkout <merge_commit>^1
+
+3. Merge the commit that was originally merged, the second parent (`^2`).
+
+        git merge <merge_commit>^2
+
+4. Resolve the conflict, and commit the result.
+
+5. Compare your result to the original merge result. Keep in mind that the author may not have resolved the conflict correctly.
+
+        git diff <merge_commit>
+
+
+Tips
+====
+
+Enable diff3
+
+    git config --global conflictstyle.diff3
+
+View the left side of the merge, what was checked out (HEAD / ours, always the top conflict section):
+
+    git diff <merge_commit>^2...<merge_commit>^1 [file_paths...]
+
+View the right side of the merge, what was merged (MERGE_HEAD / theirs, always the bottom conflict section):
+
+    git diff <merge_commit>^1...<merge_commit>^2 [file_paths...]
+
+Conflict examples
+=================
+
+Different, compatible changes made to the same/adjacent lines
+-------------------------------------------------------------
+
+Merge commit: `guard.1`
 
 <!-- Lines added to the same location; you determine order -->
 <!-- ----------------------------------------------------- -->
@@ -23,8 +62,10 @@ See the blog post [Take the pain out of git conflict resolution: use diff3][blog
 <!-- Code I changed isn't there any more (removed) -->
 <!-- --------------------------------------------- -->
 
-<!-- Code I changed isn't there any more (moved) -->
-<!-- ------------------------------------------- -->
+Code I changed isn't there any more (moved)
+-------------------------------------------
+
+Merge commit: `guard.2`
 
 <!-- A changed file was deleted on the other merge parent -->
 <!-- ---------------------------------------------------- -->
