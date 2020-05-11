@@ -22,7 +22,7 @@ Steps to reproduce a conflict
 
 4. Resolve the conflict, and commit the result.
 
-5. Compare your result to the original merge result. Keep in mind that the author may not have resolved the conflict correctly.
+5. Compare your result to the original merge result to yours (differences in your resolution are prefixed with `+`). Keep in mind that the author may not have resolved the conflict correctly.
 
         git diff <merge_commit>
 
