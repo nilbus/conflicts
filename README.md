@@ -48,7 +48,15 @@ Conflict examples
 Different, compatible changes made to the same/adjacent lines
 -------------------------------------------------------------
 
-Merge commit: `guard.1`
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout guard.1^1
+    git merge guard.1^2
+
+Commit, then check your work:
+
+    git diff guard.1
 
 <!-- Lines added to the same location; you determine order -->
 <!-- ----------------------------------------------------- -->
@@ -65,7 +73,15 @@ Merge commit: `guard.1`
 Code I changed isn't there any more (moved)
 -------------------------------------------
 
-Merge commit: `guard.2`
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout guard.2^1
+    git merge guard.2^2
+
+Commit, then check your work:
+
+    git diff guard.2
 
 <!-- A changed file was deleted on the other merge parent -->
 <!-- ---------------------------------------------------- -->
