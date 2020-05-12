@@ -53,12 +53,12 @@ Different, compatible changes made to the same/adjacent lines (small)
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout guard.1^1
-    git merge guard.1^2
+    git checkout rails.1^1
+    git merge rails.1^2
 
 Commit, then check your work:
 
-    git diff guard.1
+    git diff rails.1
 
 Different, compatible changes made to the same/adjacent lines (medium)
 ----------------------------------------------------------------------
