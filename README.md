@@ -219,14 +219,45 @@ Check your work against my corrected solution:
 Intimidating conflicts
 ======================
 
-<!-- Indentation level change -->
-<!-- ------------------------ -->
+Indentation level change
+------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout expertiza.1^1
+    git merge expertiza.1^2
+
+Commit, then compare your solution with the original merge commit: (very incorrect)
+
+    git diff expertiza.1
 
 <!-- Easiest to check out file using --ours / --theirs, then apply the other change -->
 <!-- ------------------------------------------------------------------------------ -->
 
-<!-- Massive size: Many adjacent hunks, and compared code seems unrelated -->
-<!-- -------------------------------------------------------------------- -->
+<!-- Reproduce this conflict: -->
+
+<!--     git reset --hard; git clean -df -->
+<!--     git checkout rails.1^1 -->
+<!--     git merge rails.1^2 -->
+
+<!-- Commit, then check your work: -->
+
+<!--     git diff rails.1 -->
+
+
+Massive size: Many adjacent hunks, and compared code seems unrelated
+--------------------------------------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout guard.4^1
+    git merge guard.4^2
+
+Commit, then check your work:
+
+    git diff guard.4
 
 <!-- -->
 <!-- ------------------------- -->
