@@ -42,11 +42,13 @@ View the right side of the merge, what was merged (MERGE_HEAD / theirs, always t
 
     git diff <merge_commit>^1...<merge_commit>^2 [file_paths...]
 
-Conflict examples
-=================
+----------------------------------------------------------------------------------------------------------------
 
-Different, compatible changes made to the same/adjacent lines
--------------------------------------------------------------
+Basic conflict examples
+=======================
+
+Different, compatible changes made to the same/adjacent lines (small)
+---------------------------------------------------------------------
 
 Reproduce this conflict:
 
@@ -58,20 +60,53 @@ Commit, then check your work:
 
     git diff guard.1
 
+Different, compatible changes made to the same/adjacent lines (medium)
+----------------------------------------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout pry.1^1
+    git merge pry.1^2
+
+Commit, then check your work:
+
+    git diff pry.1
+
 <!-- Lines added to the same location; you determine order -->
 <!-- ----------------------------------------------------- -->
 
-<!-- Changes with the same intent -->
-<!-- ---------------------------- -->
+Changes with the same intent
+----------------------------
 
-<!-- Apply a branch's intent to lines that didn't exist in the common ancestor -->
-<!-- ------------------------------------------------------------------------- -->
+Reproduce this conflict:
 
-<!-- Code I changed isn't there any more (removed) -->
-<!-- --------------------------------------------- -->
+    git reset --hard; git clean -df
+    git checkout pry.5^1
+    git merge pry.5^2
 
-Code I changed isn't there any more (moved)
--------------------------------------------
+Commit, then check your work:
+
+    git diff pry.5
+
+Conflicts requiring context beyond diff3 ancestor
+=================================================
+
+Code I changed isn't there any more, v1
+---------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout pry.2^1
+    git merge pry.2^2
+
+Commit, then check your work:
+
+    git diff pry.2
+
+Code I changed isn't there any more, v2
+---------------------------------------
 
 Reproduce this conflict:
 
@@ -86,6 +121,54 @@ Commit, then check your work:
 <!-- A changed file was deleted on the other merge parent -->
 <!-- ---------------------------------------------------- -->
 
+<!-- We come up with a different resolution; both are correct -->
+<!-- -------------------------------------------------------- -->
+
+<!-- We come up with a different resolution; we discover a mistake in the pushed resolution -->
+<!-- -------------------------------------------------------------------------------------- -->
+
+<!-- Massive size: Many adjacent hunks, and compared code seems unrelated -->
+<!-- -------------------------------------------------------------------- -->
+
+<!-- -->
+
+Semantic conflicts
+==================
+
+Apply a branch's intent to lines that didn't exist in the common ancestor
+-------------------------------------------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout pry.4^1
+    git merge pry.4^2
+
+Commit, then check your work:
+
+    git diff pry.4
+
+Both branches performed a similar refactoring
+---------------------------------------------
+
+**External repository**: doximity
+
+_Be sure to first commit or stash any work in progress!_
+
+Reproduce this conflict:
+
+    git reset --hard
+    git checkout 1e4e700cbee^1
+    git merge 1e4e700cbee^2
+
+Commit, then check your work:
+
+    git diff 1e4e700cbee
+
+Check out the branch you were on previously:
+
+    git checkout -
+
 <!-- A local variable I referenced was renamed -->
 <!-- ----------------------------------------- -->
 
@@ -98,14 +181,28 @@ Commit, then check your work:
 <!-- Rebase a merge, which results in conflicts -->
 <!-- ------------------------------------------ -->
 
+Reviewing conflict resolutions
+==============================
+
 <!-- Review a simple merge conflict resolution that was done correctly -->
 <!-- ----------------------------------------------------------------- -->
 
-<!-- Indentation level change -->
-<!-- ------------------------ -->
+Review a merge conflict resolution that was done incorrectly
+------------------------------------------------------------
 
-<!-- Review a merge conflict resolution that was done incorrectly -->
-<!-- ------------------------------------------------------------ -->
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout pry.3.orig^1
+    git merge pry.3.orig^2
+
+Commit, then compare your solution with the original merge commit:
+
+    git diff pry.3.orig
+
+Check your work against my corrected solution:
+
+    git diff pry.3.corrected
 
 <!-- We come up with a different resolution; both are correct -->
 <!-- -------------------------------------------------------- -->
@@ -113,20 +210,29 @@ Commit, then check your work:
 <!-- We come up with a different resolution; we discover a mistake in the pushed resolution -->
 <!-- -------------------------------------------------------------------------------------- -->
 
-<!-- Massive size: Many adjacent hunks, and compared code seems unrelated -->
-<!-- -------------------------------------------------------------------- -->
-
-<!-- DOS/UNIX line endings swapped unintentionally -->
-<!-- --------------------------------------------- -->
-
-<!-- Criss-cross merge scenario -->
-<!-- -------------------------- -->
-
 <!-- Recovering from a bad merge -->
 <!-- --------------------------- -->
 
 <!-- Recovering from committed conflict markers -->
 <!-- ------------------------------------------ -->
 
+Intimidating conflicts
+======================
+
+<!-- Indentation level change -->
+<!-- ------------------------ -->
+
 <!-- Easiest to check out file using --ours / --theirs, then apply the other change -->
 <!-- ------------------------------------------------------------------------------ -->
+
+<!-- Massive size: Many adjacent hunks, and compared code seems unrelated -->
+<!-- -------------------------------------------------------------------- -->
+
+<!-- -->
+<!-- ------------------------- -->
+
+<!-- DOS/UNIX line endings swapped unintentionally -->
+<!-- --------------------------------------------- -->
+
+<!-- Criss-cross merge scenario -->
+<!-- -------------------------- -->
