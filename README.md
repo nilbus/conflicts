@@ -238,12 +238,10 @@ Indentation level change
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout expertiza.a^1
-    git merge expertiza.a^2
+    git checkout expertiza.c^1
+    git merge expertiza.c^2
 
-Commit, then compare your solution with the original merge commit: (very incorrect)
-
-    git diff expertiza.a
+For this exercise, focus only on the conflicting `.erb` files.
 
 Easiest to check out file using --ours / --theirs, then apply the other change
 ------------------------------------------------------------------------------
@@ -275,11 +273,15 @@ Commit, then check your work:
 
     git diff guard.b
 
-<!-- -->
-<!-- ------------------------- -->
 
-<!-- DOS/UNIX line endings swapped unintentionally -->
-<!-- --------------------------------------------- -->
+DOS/UNIX line endings swapped unintentionally
+---------------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout expertiza.b^1
+    git merge expertiza.b^2
 
 <!-- Criss-cross merge scenario -->
 <!-- -------------------------- -->
