@@ -5,6 +5,7 @@ See the blog post [Take the pain out of git conflict resolution: use diff3][blog
 
 [blog]: https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
 
+
 Steps to reproduce a conflict
 =============================
 
@@ -44,6 +45,7 @@ View the right side of the merge, what was merged (MERGE_HEAD / theirs, always t
 
 ----------------------------------------------------------------------------------------------------------------
 
+
 Basic conflict examples
 =======================
 
@@ -53,12 +55,12 @@ Different, compatible changes made to the same/adjacent lines (small)
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout rails.1^1
-    git merge rails.1^2
+    git checkout rails.a^1
+    git merge rails.a^2
 
 Commit, then check your work:
 
-    git diff rails.1
+    git diff rails.a
 
 Different, compatible changes made to the same/adjacent lines (medium)
 ----------------------------------------------------------------------
@@ -66,12 +68,12 @@ Different, compatible changes made to the same/adjacent lines (medium)
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.1^1
-    git merge pry.1^2
+    git checkout pry.a^1
+    git merge pry.a^2
 
 Commit, then check your work:
 
-    git diff pry.1
+    git diff pry.a
 
 <!-- Lines added to the same location; you determine order -->
 <!-- ----------------------------------------------------- -->
@@ -82,12 +84,15 @@ Changes with the same intent
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.5^1
-    git merge pry.5^2
+    git checkout pry.e^1
+    git merge pry.e^2
 
 Commit, then check your work:
 
-    git diff pry.5
+    git diff pry.e
+
+Since both branches approached solving the same problem in different ways, it's up to you as the merger to decide which to choose. Your solution may vary from the original merger's.
+
 
 Conflicts requiring context beyond diff3 ancestor
 =================================================
@@ -98,12 +103,12 @@ Code I changed isn't there any more, v1
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.2^1
-    git merge pry.2^2
+    git checkout pry.b^1
+    git merge pry.b^2
 
 Commit, then check your work:
 
-    git diff pry.2
+    git diff pry.b
 
 Code I changed isn't there any more, v2
 ---------------------------------------
@@ -111,26 +116,28 @@ Code I changed isn't there any more, v2
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout guard.2^1
-    git merge guard.2^2
+    git checkout guard.a^1
+    git merge guard.a^2
 
 Commit, then check your work:
 
-    git diff guard.2
+    git diff guard.a
 
-<!-- A changed file was deleted on the other merge parent -->
-<!-- ---------------------------------------------------- -->
+A changed file was deleted on the other merge parent
+----------------------------------------------------
 
-<!-- We come up with a different resolution; both are correct -->
-<!-- -------------------------------------------------------- -->
+Reproduce this conflict:
 
-<!-- We come up with a different resolution; we discover a mistake in the pushed resolution -->
-<!-- -------------------------------------------------------------------------------------- -->
+    git reset --hard; git clean -df
+    git checkout docker-sync.a^1
+    git merge docker-sync.a^2
 
-<!-- Massive size: Many adjacent hunks, and compared code seems unrelated -->
-<!-- -------------------------------------------------------------------- -->
+Commit, then check your work:
 
-<!-- -->
+    git diff docker-sync.a
+
+You'll likely come up with a different resolution, but both could be considered correct!
+
 
 Semantic conflicts
 ==================
@@ -141,12 +148,12 @@ Apply a branch's intent to lines that didn't exist in the common ancestor
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.4^1
-    git merge pry.4^2
+    git checkout pry.d^1
+    git merge pry.d^2
 
 Commit, then check your work:
 
-    git diff pry.4
+    git diff pry.d
 
 Both branches performed a similar refactoring
 ---------------------------------------------
@@ -181,6 +188,7 @@ Check out the branch you were on previously:
 <!-- Rebase a merge, which results in conflicts -->
 <!-- ------------------------------------------ -->
 
+
 Reviewing conflict resolutions
 ==============================
 
@@ -193,16 +201,16 @@ Review a merge conflict resolution that was done incorrectly
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.3.orig^1
-    git merge pry.3.orig^2
+    git checkout pry.c.orig^1
+    git merge pry.c.orig^2
 
 Commit, then compare your solution with the original merge commit:
 
-    git diff pry.3.orig
+    git diff pry.c.orig
 
 Check your work against my corrected solution:
 
-    git diff pry.3.corrected
+    git diff pry.c.corrected
 
 <!-- We come up with a different resolution; both are correct -->
 <!-- -------------------------------------------------------- -->
@@ -216,6 +224,7 @@ Check your work against my corrected solution:
 <!-- Recovering from committed conflict markers -->
 <!-- ------------------------------------------ -->
 
+
 Intimidating conflicts
 ======================
 
@@ -225,26 +234,15 @@ Indentation level change
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout expertiza.1^1
-    git merge expertiza.1^2
+    git checkout expertiza.a^1
+    git merge expertiza.a^2
 
 Commit, then compare your solution with the original merge commit: (very incorrect)
 
-    git diff expertiza.1
+    git diff expertiza.a
 
 <!-- Easiest to check out file using --ours / --theirs, then apply the other change -->
 <!-- ------------------------------------------------------------------------------ -->
-
-<!-- Reproduce this conflict: -->
-
-<!--     git reset --hard; git clean -df -->
-<!--     git checkout rails.1^1 -->
-<!--     git merge rails.1^2 -->
-
-<!-- Commit, then check your work: -->
-
-<!--     git diff rails.1 -->
-
 
 Massive size: Many adjacent hunks, and compared code seems unrelated
 --------------------------------------------------------------------
@@ -252,12 +250,12 @@ Massive size: Many adjacent hunks, and compared code seems unrelated
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout guard.4^1
-    git merge guard.4^2
+    git checkout guard.b^1
+    git merge guard.b^2
 
 Commit, then check your work:
 
-    git diff guard.4
+    git diff guard.b
 
 <!-- -->
 <!-- ------------------------- -->
