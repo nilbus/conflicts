@@ -126,6 +126,10 @@ Commit, then check your work:
 A changed file was deleted on the other merge parent
 ----------------------------------------------------
 
+Note: "deleted by us" in `git status` refers not to authorship but rather which parent deleted.
+- Ours / by us = 1st parent (`^1`)
+- Theirs / by them = 2nd parent (`^2`)
+
 Reproduce this conflict:
 
     git reset --hard; git clean -df
