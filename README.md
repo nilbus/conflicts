@@ -205,12 +205,12 @@ Review a merge conflict resolution that was done incorrectly
 Reproduce this conflict:
 
     git reset --hard; git clean -df
-    git checkout pry.c.orig^1
-    git merge pry.c.orig^2
+    git checkout pry.c^1
+    git merge pry.c^2
 
 Commit, then compare your solution with the original merge commit:
 
-    git diff pry.c.orig
+    git diff pry.c
 
 Check your work against my corrected solution:
 
@@ -245,8 +245,22 @@ Commit, then compare your solution with the original merge commit: (very incorre
 
     git diff expertiza.a
 
-<!-- Easiest to check out file using --ours / --theirs, then apply the other change -->
-<!-- ------------------------------------------------------------------------------ -->
+Easiest to check out file using --ours / --theirs, then apply the other change
+------------------------------------------------------------------------------
+
+Reproduce this conflict:
+
+    git reset --hard; git clean -df
+    git checkout rails.b^1
+    git merge rails.b^2
+
+Commit, then compare your solution with the original merge commit:
+
+    git diff rails.b
+
+Check your work against my corrected solution:
+
+    git diff rails.b.corrected
 
 Massive size: Many adjacent hunks, and compared code seems unrelated
 --------------------------------------------------------------------
