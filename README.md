@@ -142,6 +142,8 @@ Commit, then check your work:
 
 You'll likely come up with a different resolution, but both could be considered correct!
 
+There's also a semantic conflict resolved in the official resolution.
+
 
 Semantic conflicts
 ==================
