@@ -1,13 +1,17 @@
-A curated set of merge conflicts from various open-source git repositories for conflict resolution practice.
+Conflicts Playground
+====================
+
+This is a curated set of merge conflicts from various open-source git repositories for conflict resolution practice. This repository includes the git commits from several open-source projects. None are merged into the master branch, but you can access the code and reproduce each conflict by cloning this repository and using the git commands given in the examples below.
 
 When resolving conflicts in git, it's recommended to use diff3.
 See the blog post [Take the pain out of git conflict resolution: use diff3][blog].
 
 [blog]: https://blog.nilbus.com/take-the-pain-out-of-git-conflict-resolution-use-diff3/
 
-
 Steps to reproduce a conflict
 =============================
+
+After cloning this repository,
 
 1. Ensure your working directory is clean.
 
